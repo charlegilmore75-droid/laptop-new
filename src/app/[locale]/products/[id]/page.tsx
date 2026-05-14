@@ -31,7 +31,14 @@ async function getProduct(id: string) {
     include: {
       category: true,
       reviews: {
-        include: { user: { select: { name: true, avatar: true } } },
+        include: {
+          user: {
+            select: {
+              name: true,
+              avatar: true,
+            },
+          },
+        },
         orderBy: { createdAt: 'desc' },
       },
       _count: { select: { reviews: true } },
@@ -61,26 +68,32 @@ export default async function ProductDetailPage({ params }: Props) {
     ? product.reviews.reduce((a, r) => a + r.rating, 0) / product.reviews.length
     : 0;
 
-  const serialize = (p: typeof product) => ({
-    ...p,
+  // ✅ تنظيف وتحويل البيانات بدون TypeScript conflicts
+  const serializedProduct = {
+    ...product,
     avgRating,
-    specsAr: p.specsAr as Record<string, string> | null,
-    specsEn: p.specsEn as Record<string, string> | null,
-    createdAt: p.createdAt.toISOString(),
-    updatedAt: p.updatedAt.toISOString(),
+    specsAr: product.specsAr as Record<string, string> | null,
+    specsEn: product.specsEn as Record<string, string> | null,
+    createdAt: product.createdAt.toISOString(),
+    updatedAt: product.updatedAt.toISOString(),
     category: {
-      ...p.category,
-      createdAt: p.category.createdAt.toISOString(),
-      updatedAt: p.category.updatedAt.toISOString(),
+      ...product.category,
+      createdAt: product.category.createdAt.toISOString(),
+      updatedAt: product.category.updatedAt.toISOString(),
     },
-    reviews: p.reviews.map((r) => ({
-      ...r,
+    reviews: product.reviews.map((r) => ({
+      id: r.id,
+      rating: r.rating,
+      comment: r.comment,
+      isApproved: r.isApproved,
+      user: {
+        name: r.user.name ?? undefined,
+        avatar: r.user.avatar ?? undefined,
+      },
       createdAt: r.createdAt.toISOString(),
       updatedAt: r.updatedAt.toISOString(),
     })),
-  });
-
-  const serializedProduct = serialize(product);
+  };
 
   const serializedRelated = related.map((r) => ({
     ...r,
