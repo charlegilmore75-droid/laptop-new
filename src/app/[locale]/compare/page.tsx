@@ -26,8 +26,13 @@ export default function ComparePage() {
       .finally(() => setLoading(false));
   }, [ids]);
 
-  const allSpecs = [...new Set(products.flatMap((p) => Object.keys((isRTL ? p.specsAr : p.specsEn) || {})))];
-
+  const allSpecs = Array.from(
+  new Set(
+    products.flatMap((p) =>
+      Object.keys((isRTL ? p.specsAr : p.specsEn) || {})
+    )
+  )
+);
   return (
     <>
       <Navbar />
