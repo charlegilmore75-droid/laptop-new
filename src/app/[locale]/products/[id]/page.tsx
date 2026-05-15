@@ -82,17 +82,22 @@ export default async function ProductDetailPage({ params }: Props) {
       updatedAt: product.category.updatedAt.toISOString(),
     },
     reviews: product.reviews.map((r) => ({
-      id: r.id,
-      rating: r.rating,
-      comment: r.comment,
-      isApproved: r.isApproved,
-      user: {
-        name: r.user.name ?? undefined,
-        avatar: r.user.avatar ?? undefined,
-      },
-      createdAt: r.createdAt.toISOString(),
-      updatedAt: r.updatedAt.toISOString(),
-    })),
+  id: r.id,
+  rating: r.rating,
+  comment: r.comment,
+  isApproved: r.isApproved,
+
+  userId: r.userId,
+  productId: r.productId,
+
+  user: {
+    name: r.user?.name ?? undefined,
+    avatar: r.user?.avatar ?? undefined,
+  },
+
+  createdAt: r.createdAt.toISOString(),
+  updatedAt: r.updatedAt.toISOString(),
+})),
   };
 
   const serializedRelated = related.map((r) => ({
