@@ -12,19 +12,8 @@ const nextConfig = {
       { protocol: 'http', hostname: 'localhost' },
     ],
   },
-
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
-  },
-
-  // ✅ تجاهل TypeScript errors أثناء build
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
-  // ✅ تجاهل ESLint أثناء build
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 
