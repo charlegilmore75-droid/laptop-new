@@ -13,7 +13,7 @@ async function main() {
     { key: 'maintenanceMode', value: 'false' },
     { key: 'currency', value: 'SYP' },
     { key: 'contactEmail', value: 'support@laptopstore.sy' },
-    { key: 'contactPhone', value: '+963 11 XXX XXXX' },
+    { key: 'contactPhone', value: 'رقم الدعم +963 xxx xxx xxx' },
     { key: 'address', value: 'دمشق، سوريا' },
     { key: 'facebook', value: 'https://facebook.com/laptopstore' },
     { key: 'whatsapp', value: '+963XXXXXXXXX' },
