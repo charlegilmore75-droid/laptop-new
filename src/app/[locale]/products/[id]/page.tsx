@@ -100,21 +100,39 @@ export default async function ProductDetailPage({ params }: Props) {
 })),
   };
 
-  const serializedRelated = related.map((r) => ({
-    ...r,
-    avgRating: r.reviews.length
-      ? r.reviews.reduce((a, rv) => a + rv.rating, 0) / r.reviews.length
-      : 0,
-    specsAr: r.specsAr as Record<string, string> | null,
-    specsEn: r.specsEn as Record<string, string> | null,
-    createdAt: r.createdAt.toISOString(),
-    updatedAt: r.updatedAt.toISOString(),
-    category: {
-      ...r.category,
-      createdAt: r.category.createdAt.toISOString(),
-      updatedAt: r.category.updatedAt.toISOString(),
-    },
-  }));
+ const serializedRelated = related.map((r) => ({
+  ...r,
+
+  avgRating: r.reviews.length
+    ? r.reviews.reduce((a, rv) => a + rv.rating, 0) / r.reviews.length
+    : 0,
+
+  specsAr: r.specsAr as Record<string, string> | null,
+  specsEn: r.specsEn as Record<string, string> | null,
+
+  createdAt: r.createdAt.toISOString(),
+  updatedAt: r.updatedAt.toISOString(),
+
+  category: {
+    ...r.category,
+    createdAt: r.category.createdAt.toISOString(),
+    updatedAt: r.category.updatedAt.toISOString(),
+  },
+
+  reviews: r.reviews.map((rv) => ({
+    id: crypto.randomUUID(),
+    rating: rv.rating,
+
+    comment: null,
+    isApproved: true,
+
+    userId: '',
+    productId: r.id,
+
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  })),
+}));
 
   return (
     <>
