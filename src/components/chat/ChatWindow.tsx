@@ -79,8 +79,19 @@ export default function ChatWindow({ locale }: { locale: string }) {
         credentials: 'include',
         body: JSON.stringify({ conversationId: conversation.id, content: text }),
       });
-      if (!res.ok) throw new Error('Failed to send');
-      const { message: saved } = await res.json();
+
+      if (!res.ok) {
+        const errorText = await res.text().catch(() => '');
+        throw new Error(errorText || 'Failed to send');
+      }
+
+      const data = await res.json();
+      const saved = data.message ?? data.savedMessage ?? data.newMessage;
+
+      if (!saved) {
+        throw new Error('Server did not return the saved message');
+      }
+
       setConversation((prev) => prev ? {
         ...prev,
         messages: prev.messages.map((m) => m.id === tempId ? saved : m),
