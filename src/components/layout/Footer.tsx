@@ -96,7 +96,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { icon: Mail, text: 'support@laptopstore.sy' },
-                { icon: Phone, text: '+963 11 XXX XXXX' },
+                { icon: Phone, text: '+963 11 888 XXXX' },
                 { icon: MapPin, text: locale === 'ar' ? 'دمشق، سوريا' : 'Damascus, Syria' },
               ].map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-muted-foreground text-sm">
