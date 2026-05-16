@@ -96,7 +96,16 @@ export default function AdminPaymentMethodsClient({ methods: initial, locale }: 
               ].map((f) => (
                 <div key={f.key}>
                   <label className="text-xs font-medium text-muted-foreground mb-1 block">{f.label}</label>
-                  <input value={(form as Record<string, string>)[f.key] || ''} onChange={(e) => setForm((p) => ({ ...p, [f.key]: e.target.value }))} className="w-full border border-border rounded-xl px-3 py-2.5 bg-background text-sm text-foreground outline-none focus:ring-2 focus:ring-primary/30" />
+               <input
+  value={String((form as any)[f.key] ?? '')}
+  onChange={(e) =>
+    setForm((p) => ({
+      ...p,
+      [f.key]: e.target.value,
+    }))
+  }
+  className="w-full border border-border rounded-xl px-3 py-2.5 bg-background text-sm text-foreground outline-none focus:ring-2 focus:ring-primary/30"
+/>
                 </div>
               ))}
               <div>
