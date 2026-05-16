@@ -105,7 +105,7 @@ export default async function ProductsPage({
           <ProductsPageClient
             initialData={data as Parameters<typeof ProductsPageClient>[0]['initialData']}
             locale={locale}
-            searchParams={searchParams}
+          searchParams={searchParams as Record<string, string | undefined>}
           />
         </Suspense>
       </main>
