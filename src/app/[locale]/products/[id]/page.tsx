@@ -139,11 +139,11 @@ export default async function ProductDetailPage({ params }: Props) {
       <Navbar />
 
       <main className="container mx-auto px-4 py-10 min-h-screen">
-        <ProductDetailClient
-          product={serializedProduct}
-          related={serializedRelated}
-          locale={params.locale}
-        />
+      <ProductDetailClient
+  product={serializedProduct as any}
+  related={serializedRelated as any}
+  locale={params.locale}
+/>
       </main>
 
       <Footer />
