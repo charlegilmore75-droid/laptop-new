@@ -43,6 +43,7 @@ export default function CheckoutPage() {
   });
 
   const onSubmit = async (data: CheckoutInput) => {
+   console.log('FORM SUBMITTED', data);
     if (items.length === 0) return;
     setLoading(true);
     try {
@@ -132,18 +133,17 @@ export default function CheckoutPage() {
             {/* Payment */}
             <div className="space-y-3">
               <label className="text-sm font-medium text-foreground">{t('paymentMethod')}</label>
-              <div className="grid grid-cols-2 gap-3">
-                <label className="flex items-center gap-3 border border-border rounded-xl p-4 cursor-pointer hover:border-primary/50 transition-colors">
-                  <input type="radio" {...register('useWallet')} value="false" className="hidden" />
-                  <Banknote className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium">{t('cashOnDelivery')}</span>
-                </label>
-                <label className="flex items-center gap-3 border border-border rounded-xl p-4 cursor-pointer hover:border-primary/50 transition-colors">
-                  <input type="checkbox" {...register('useWallet')} className="rounded" />
-                  <Wallet className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium">{t('walletPayment')}</span>
-                </label>
-              </div>
+             <div className="flex items-center gap-3 border border-border rounded-xl p-4">
+  <input
+    type="checkbox"
+    {...register('useWallet')}
+    className="rounded"
+  />
+  <Wallet className="w-5 h-5 text-primary" />
+  <span className="text-sm font-medium">
+    {t('walletPayment')}
+  </span>
+</div>
             </div>
 
             <button
