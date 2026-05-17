@@ -133,17 +133,7 @@ export default function CheckoutPage() {
             {/* Payment */}
             <div className="space-y-3">
               <label className="text-sm font-medium text-foreground">{t('paymentMethod')}</label>
-             <div className="flex items-center gap-3 border border-border rounded-xl p-4">
-  <input
-    type="checkbox"
-    {...register('useWallet')}
-    className="rounded"
-  />
-  <Wallet className="w-5 h-5 text-primary" />
-  <span className="text-sm font-medium">
-    {t('walletPayment')}
-  </span>
-</div>
+              
             </div>
 
             <button
