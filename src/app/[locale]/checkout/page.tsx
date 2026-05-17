@@ -104,7 +104,7 @@ export default function CheckoutPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 space-y-5">
             {[
               { name: 'fullName' as const, label: t('fullName'), type: 'text' },
-              { name: 'phone' as const, label: t('phone'), type: 'tel' },
+              { name: 'phone' as const, label: t('numper watsap'), type: 'tel' },
               { name: 'address' as const, label: t('address'), type: 'text' },
               { name: 'shippingBranch' as const, label: t('shippingBranch'), type: 'text' },
             ].map((field) => (
